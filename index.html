@@ -5,7 +5,312 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Review of films and books</title>
     <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="static/styles/style.css">
+    
+    <!-- Internal CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            color: antiquewhite;
+            font-size: 16px;
+            background-color: black;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .wrapper {
+            background: rgb(0, 0, 0);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(26, 14, 1, 1) 100%);
+            width: 100%;
+        }
+
+        .container {
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 50px 0;
+        }
+
+        header .logo {
+            text-transform: uppercase;
+            font-size: 29px;
+            font-weight: 800;
+        }
+
+        header > nav {
+            float: right;
+            width: 50%;
+        }
+
+        header > nav > ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+            position: relative;
+        }
+
+        header > nav > ul > li {
+            display: block;
+        }
+
+        header > nav > ul > li > a {
+            color: antiquewhite;
+        }
+
+        header > nav > ul > li:not(.active):not(.btn) > a:hover {
+            border-bottom: 5px solid #dc7000;
+        }
+
+        header > nav > ul > li.btn > a {
+            background-color: #fa9021;
+            padding: 9px 17px;
+            border-radius: 5px;
+            transition: all 500ms ease;
+        }
+
+        header > nav > ul > li.btn > a:hover {
+            background: #fa6221;
+        }
+
+        header > nav > ul > li.active::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 5px;
+            background: #dc7000;
+            border-radius: 10px;
+            position: relative;
+            top: 10px;
+            left: -15px;
+        }
+
+        .hero {
+            position: relative;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        .hero-info {
+            width: 530px;
+        }
+
+        .hero-info > h2 {
+            color: #e87d0e;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .hero-info > h1 {
+            font-size: 50px;
+            font-weight: 600;
+        }
+
+        .hero-info > p {
+            font-weight: 600;
+            margin: 30px 0;
+            line-height: 170%;
+        }
+
+        .hero-info .btn {
+            background-color: #fa8305;
+            color: antiquewhite;
+            border-radius: 50px;
+            padding: 15px 30px;
+            border: 0;
+            transition: all 500ms ease;
+            font-size: 17px;
+        }
+
+        .hero-info .btn:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        .hero img {
+            width: 550px;
+            height: auto;
+            max-width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .movies h3, .books h3 {
+            font-weight: 600;
+            font-size: 31px;
+            margin-bottom: 30px;
+        }
+
+        .movies .see-all, .books .seeall {
+            color: antiquewhite;
+            background: #6c3600;
+            border-radius: 5px;
+            padding: 12px 23px;
+            float: right;
+            display: block;
+            transition: all 500ms ease;
+            margin-bottom: 20px;
+        }
+
+        .movies .see-all:hover, .books .seeall:hover {
+            transform: scale(1.1);
+        }
+
+        .moviecards, .bookcards {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .block {
+            flex: 1 1 calc(25% - 20px);
+            max-width: calc(25% - 20px);
+            background: #1b1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s;
+            box-sizing: border-box;
+        }
+
+        .block:hover {
+            transform: scale(1.05);
+        }
+
+        .block img {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+        }
+
+        .block span, .block figcaption {
+            display: block;
+            color: #ffffff;
+            margin-top: 10px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .email {
+            padding-bottom: 120px;
+            width: 94%;
+            margin-top: 300px;
+        }
+
+        .email .blockc {
+            background: #1C140F;
+            margin-top: 30px;
+            border-radius: 10px;
+            padding: 40px 3%;
+            width: 94%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .email .blockc h3 {
+            font-size: 30px;
+            font-weight: 500px;
+        }
+
+        .email .blockc p {
+            width: 500px;
+        }
+
+        .email .blockc input {
+            background: #fff;
+            outline: none;
+            border: 0;
+            border-radius: 5px;
+            width: 380px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            padding: 20px 30px;
+            position: relative;
+            right: -100px;
+            z-index: 1;
+            padding-right: 120px;
+        }
+
+        .email .blockc input::placeholder {
+            color: #898989;
+        }
+
+        .email .blockc button {
+            background-color: #fa9021;
+            padding: 9px 17px;
+            border-radius: 5px;
+            transition: all 500ms ease;
+            cursor: pointer;
+            border: 0;
+            padding: 13px 17px;
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+
+        .email .blockc button:hover {
+            background: #fa6221;
+        }
+
+        footer {
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+            padding: 50px 0;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        footer .container div {
+            width: 30%;
+        }
+
+        footer .container div h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        footer hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            text-align: left;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        footer .center {
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +328,6 @@
             </nav>
         </header>
 
-        <!-- Main content starts -->
         <main>
             <section class="hero container">
                 <div class="hero-info">
@@ -101,7 +405,6 @@
                 </div>
             </section>
         </main>
-        <!-- Main content ends -->
 
         <footer>
             <div class="container">
@@ -120,14 +423,14 @@
                 </div>
                 <div>
                     <h4>Contact us</h4>
-                    <p>Astana , Kazakhstan</p>
+                    <p>Astana, Kazakhstan</p>
                     <p>+77076103761</p>
                 </div>
             </div>
             <hr>
-            <p class="center">Made by  Aigerim and  Aisana SE-2304</p>
+            <p class="center">Made by Oshakbay Aigerim and Orynbay Aisana SE-2304</p>
         </footer>
-        <footer> Aigerim, Aisana</footer>
+        <footer>Oshakbay Aigerim, Orynbay Aisana</footer>
     </div>
 </body>
 </html>
